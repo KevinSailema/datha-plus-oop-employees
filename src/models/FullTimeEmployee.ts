@@ -1,18 +1,23 @@
 import { Employee } from './Employee';
 
 export class FullTimeEmployee extends Employee {
-  private readonly bonusPercentage: number = 0.10;
+  private static readonly BONUS_PERCENTAGE: number = 0.10;
 
   constructor(firstName: string, lastName: string, id: string, baseSalary: number) {
     super(firstName, lastName, id, baseSalary);
   }
 
   public calculateSalary(): number {
-    const bonus = this.getBaseSalary() * this.bonusPercentage;
-    return this.getBaseSalary() + bonus;
+    const baseSalary = this.getBaseSalary();
+    const bonus = baseSalary * FullTimeEmployee.BONUS_PERCENTAGE;
+    return baseSalary + bonus;
   }
 
-  public getBonusPercentage(): number {
-    return this.bonusPercentage;
+  public getBonusAmount(): number {
+    return this.getBaseSalary() * FullTimeEmployee.BONUS_PERCENTAGE;
+  }
+
+  public static getBonusPercentage(): number {
+    return FullTimeEmployee.BONUS_PERCENTAGE;
   }
 }

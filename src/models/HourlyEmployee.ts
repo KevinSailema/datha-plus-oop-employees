@@ -13,8 +13,18 @@ export class HourlyEmployee extends Employee {
     hourlyRate: number
   ) {
     super(firstName, lastName, id, baseSalary);
+    this.validateHourlyInput(hoursWorked, hourlyRate);
     this.hoursWorked = hoursWorked;
     this.hourlyRate = hourlyRate;
+  }
+
+  private validateHourlyInput(hours: number, rate: number): void {
+    if (hours < 0) {
+      throw new Error('Hours worked cannot be negative');
+    }
+    if (rate < 0) {
+      throw new Error('Hourly rate cannot be negative');
+    }
   }
 
   public calculateSalary(): number {
@@ -41,5 +51,14 @@ export class HourlyEmployee extends Employee {
       throw new Error('Hourly rate cannot be negative');
     }
     this.hourlyRate = rate;
+  }
+
+  public getWeeklyHours(): number {
+    return this.hoursWorked;
+  }
+
+  public getMonthlyProjection(): number {
+    const weeksPerMonth = 4;
+    return this.calculateSalary() * weeksPerMonth;
   }
 }

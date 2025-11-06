@@ -13,7 +13,7 @@ describe('FullTimeEmployee', () => {
       expect(employee.getLastName()).toBe('Doe');
       expect(employee.getId()).toBe('EMP001');
       expect(employee.getBaseSalary()).toBe(3000);
-      expect(employee.getBonusPercentage()).toBe(0.10);
+      expect(FullTimeEmployee.getBonusPercentage()).toBe(0.10);
     });
   });
 
@@ -27,6 +27,13 @@ describe('FullTimeEmployee', () => {
       employee.setBaseSalary(5000);
       const expectedSalary = 5000 + (5000 * 0.10);
       expect(employee.calculateSalary()).toBe(expectedSalary);
+    });
+  });
+
+  describe('getBonusAmount', () => {
+    test('should return correct bonus amount', () => {
+      const expectedBonus = 3000 * 0.10;
+      expect(employee.getBonusAmount()).toBe(expectedBonus);
     });
   });
 });
