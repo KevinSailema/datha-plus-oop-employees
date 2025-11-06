@@ -10,13 +10,18 @@ function demonstratePolymorphism(): void {
     new HourlyEmployee('Lisa', 'Brown', 'HR002', 0, 140, 25),
   ];
 
-  console.log('=== Employee Salary Calculation - Polymorphism Demo ===\n');
+  console.log('=== Employee Management System ===\n');
+  console.log('Demonstrating polymorphism with showInformation() method:\n');
 
   employees.forEach((employee: Employee) => {
-    const salary = employee.calculateSalary();
-    console.log(`${employee.getFirstName()} ${employee.getLastName()} (${employee.getId()})`);
-    console.log(`Calculated Salary: $${salary.toFixed(2)}\n`);
+    employee.showInformation();
+    console.log();
   });
+
+  console.log('=== Summary ===');
+  const totalPayroll = employees.reduce((sum, emp) => sum + emp.calculateSalary(), 0);
+  console.log(`Total Employees: ${employees.length}`);
+  console.log(`Total Payroll: $${totalPayroll.toFixed(2)}`);
 }
 
 demonstratePolymorphism();
